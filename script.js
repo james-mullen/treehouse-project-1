@@ -27,6 +27,13 @@ timer();
 function getRandomQuote(){
 	//Random number 0-4 to select array value
 	var number = Math.floor(Math.random() * 5)
+	//Once all quotes have been displayed, reset "used" to false, reset counter to 0
+	if (counter == 5) {
+		for (i = 0; i < 5; i+=1) {
+			quotes[i].used = false;
+			counter = 0;
+		}
+	}
 	//Checks if quote has been used since last reset, else passes data to global scope, then to printQuote() (31-60)
 	if (quotes[number].used == true){
 		getRandomQuote()
@@ -49,14 +56,6 @@ function getRandomQuote(){
 
 		//Increases counter by 1
 		counter += 1;
-
-		//Once all quotes have been displayed, reset "used" to false, reset counter to 0
-		if (counter == 5) {
-			for (i = 0; i < 5; i+=1) {
-				quotes[i].used = false;
-				counter = 0;
-			}
-		}
 	}
 }
 
